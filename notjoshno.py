@@ -13,12 +13,15 @@ def getrendervariables(pagetitle):
 
     ##The title variable is used for the <title> HTML tag
     title = pagetitle
-    #The username variable is taken from the session
-    username = session["username"]
+    #The username variable is taken from the session, if available
+    try:
+        username = session["username"]
+    except:
+        username = None
     ##The loggedinmessage variable is displayed in the navbar in layout.html
     #It is equal to the session's "username" key, e.g. "admin"
     #If the session has no username key i.e. the user is not logged in, then return "Not currently logged in"
-    loggedinmessage = ("Logged in as: " + username) if session["username"] is not None else "Not currently logged in"
+    loggedinmessage = ("Logged in as: " + username) if username is not None else "Not currently logged in"
 
     #Returns the variables as a tuple
     return title, loggedinmessage
