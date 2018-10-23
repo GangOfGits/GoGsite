@@ -1,8 +1,18 @@
 from passlib.hash import pbkdf2_sha256 as sha256
 import pyodbc
+from databaser import connect
 
-#Connects to the login database
-connection = pyodbc.connect("Driver={ODBC Driver 13 for SQL Server};Server=tcp:notjoshno.database.windows.net,1433;Database=notjoshno;Uid=joshua@notjoshono;Pwd=Complexicity12;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;")
+##Import SQL server settings from server.yaml
+with open("server.yaml", "r") as stream:
+    credentials = load(stream)["credentials"]
+    sserver = credentials["server"]
+    sdatabase = credentials["database"]
+    suid = credentials["uid"]
+    spassword = credentials["password"]
+
+
+#Connects to the login database using databaser.py
+connection = connect()
 #Creates a cursor from the connection, which can be used to execute queries
 cursor = connection.cursor()
 
