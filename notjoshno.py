@@ -44,9 +44,9 @@ def rendernamegenerator():
     return render_template("namegenerator.html", title=_title, loggedinmessage=_loggedinmessage)
 
 #RENDER FUNCTION
-@app.route("/reset", methods=["GET"])
+@app.route("/signout", methods=["GET"])
 def renderreset():
-    _title, _loggedinmessage = getrendervariables("Reset")
+    _title, _loggedinmessage = getrendervariables("Sign Out")
     session["username"] = None
     return redirect("/")
 
@@ -83,6 +83,10 @@ def pagenotfound(e):
 @app.errorhandler(410)
 def pagenotfound(e):
     return render_template("410.html", error="410 - Page deleted")
+
+@app.errorhandler(500)
+def pagenotfound(e):
+    return render_template("500.html", error="500 - Internal Server Error")
 
 
 if __name__ == "__main__":
