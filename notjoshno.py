@@ -50,6 +50,12 @@ def renderreset():
     session["username"] = None
     return redirect("/")
 
+#RENDER FUNCTION
+@app.route("/login", methods=["GET"])
+def renderlogin():
+    _title, _loggedinmessage = getrendervariables("Login")
+    return render_template("login.html", title=_title, loggedinmessage=_loggedinmessage)
+
 #POST FUNCTION
 @app.route("/login", methods=["POST"])
 def login():
@@ -64,11 +70,19 @@ def login():
         else:
             return redirect("/login")
 
-#RENDER FUNCTION
-@app.route("/login", methods=["GET"])
-def renderlogin():
-    _title, _loggedinmessage = getrendervariables("Login")
-    return render_template("login.html", title=_title, loggedinmessage=_loggedinmessage)
+
+#ERROR HANDLING
+@app.errorhandler(403)
+def pagenotfound(e):
+    return render_template("403.html", error="403 - Forbidden")
+
+@app.errorhandler(404)
+def pagenotfound(e):
+    return render_template("404.html", error="404 - Page not found")
+
+@app.errorhandler(410)
+def pagenotfound(e):
+    return render_template("410.html", error="410 - Page deleted")
 
 
 if __name__ == "__main__":

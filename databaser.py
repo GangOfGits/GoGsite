@@ -10,4 +10,3 @@ with open("server.yaml", "r") as stream:
 
 def connect():
     return pyconnect("Driver={ODBC Driver 13 for SQL Server};Server=" + server + ",1433;Database=" + database + ";Uid=" + uid + "@" + database + ";Pwd=" + password +";Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;")
-
