@@ -1,4 +1,4 @@
-# GoGsite
+# notjoshno
 A 'lil website for Gang of Gits
 
 ## Notes for developers
