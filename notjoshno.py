@@ -84,6 +84,10 @@ def pagenotfound(e):
 def pagenotfound(e):
     return render_template("410.html", error="410 - Page deleted")
 
+@app.errorhandler(500)
+def pagenotfound(e):
+    return render_template("500.html", error="500 - Internal Server Error")
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
