@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+<div style="text-align:center">
+
+	{% block content %}
+
+        <br>
+        <br>
+
+        <div class="d-flex justify-content-around">
+
+            <form action="\login" method="POST">
+
+                <input type="username" class="form-control" name="username" placeholder="Username">
+                <input type="password" class="form-control" name="password" placeholder="Password">
+                <input type="submit" class="form-control" value="Log In">
+
+            </form>
+
+        </div>
+
+
+	{% endblock content %}
+
+</div>
