@@ -27,12 +27,20 @@
               </li>
             </ul>
               <span class="navbar-text">
-                  {{loggedinmessage}}
+                  {{logged_in_message}}
               </span>
           </div>
         </nav>
 
-		{% block content %}{% endblock %}
+        {% if alert %}
+
+        <div class="alert alert-{{alert_type}}">
+            <strong>{{alert_start}}</strong> {{alert_message}}
+        </div>
+
+        {% endif %}
+
+		{% block content %}{% endblock content %}
 	</body>
 
 </html>
