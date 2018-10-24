@@ -6,7 +6,7 @@ connection = connect()
 #Creates a cursor from the connection, which can be used to execute queries
 cursor = connection.cursor()
 
-def verifyuserexists(username):
+def verify_user_exists(username):
     username = username.lower() #Usernames are not case sensitive
     #SQL Query to be executed by the cursor
     query = "SELECT 1 FROM Users WHERE username = ?"
@@ -15,16 +15,13 @@ def verifyuserexists(username):
 
 
 #Generates a hash to be stored in the database, based on the password and a generated salt
-def generatehash(password):
+def generate_hash(password):
     hash = sha256.hash(password)
-    query = """
-            IF
-    """
 
 
 #Checks a password against a parsed hash to verify that the password is correct.
 #This hash should come from the login database and the users table
-def verifypassword(username, password):
+def verify_password(username, password):
     username = username.lower() #Usernames are not case sensitive
     #SQL Query to be executed by the cursor
     query = "SELECT hash FROM Users WHERE username = ?"
