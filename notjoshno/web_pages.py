@@ -7,14 +7,23 @@ from flask import render_template, session
 #starts
 #messages
 
-class alert(object):
+# class alert(object):
+#
+#     def __init__(self, state = True, type = "danger", start = "Danger:",
+#                  message="You should not be seeing this"):
+#         self.state = state
+#         self.type = type
+#         self.start = start
+#         self.message = message
 
-    def __init__(self, state = True, type = "danger", start = "Danger:",
-                 message="You should not be seeing this"):
-        self.state = state
-        self.type = type
-        self.start = start
-        self.message = message
+def set_alert(state = True, type = "info", header = "Danger:",
+              message = "You should not be seeing this"):
+    session["alert"] = {}
+    settings = session["alert"]
+    settings["state"] = state
+    settings["type"] = type
+    settings["header"] = header
+    settings["message"] = message
 
 
 ##The web page class will be used to handle web page:
@@ -28,18 +37,24 @@ class web_page(object):
         self.template = template
         self.title = title
 
-    def render(self, alert=alert(state = False)):
+    def render(self):
         try:
-            username = session["username"]
+            username = session["credentials"]["username"]
         except:
             username = None
         rendered_logged_in_message = ("Logged in as: " + username) if username is not None\
         else "Not currently logged in"
 
+        alert_settings = session["alert"]
+        alert_state = alert_settings["state"]
+        alert_type = alert_settings["type"]
+        alert_header = alert_settings["header"]
+        alert_message = alert_settings["message"]
+
         return render_template(self.template,
                                title = self.title,
-                               logged_in_message=rendered_logged_in_message,
-                               alert=alert.state,
-                               alert_type=alert.type,
-                               alert_start=alert.start,
-                               alert_message=alert.message)
+                               logged_in_message = rendered_logged_in_message,
+                               alert = alert_state,
+                               alert_type = alert_type,
+                               alert_header = alert_header,
+                               alert_message = alert_message)

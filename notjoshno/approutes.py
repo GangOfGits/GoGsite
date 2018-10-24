@@ -1,7 +1,8 @@
 from notjoshno import app
 from flask import render_template, redirect, session, request, url_for, abort
 from notjoshno.authentication import verify_password
-from notjoshno.web_pages import web_page
+from notjoshno.web_pages import web_page, set_alert
+
 
 web_pages = {}
 web_pages["main"] = web_page("main.html", "Home")
@@ -11,6 +12,7 @@ web_pages["main"] = web_page("main.html", "Home")
 
 @app.route("/")
 def home():
+    set_alert()
     return web_pages["main"].render()
 
 
@@ -32,7 +34,10 @@ def login():
             if verify_password(request.form["username"],
                                request.form["password"]):
                 #Set the session "username" key to the username put into the form
-                session["username"] = request.form["username"]
+                session["credentials"]["username"] = request.form["username"]
+
+
+
                 return redirect(url_for("home"))
             else:
                 return redirect(url_for("login"))
