@@ -8,7 +8,8 @@ A 'lil website for Gang of Gits
 Joshua
 
 ### Modules
-* *Use notjoshno.py as the main module. This is what is run to start the webapp.*
-* wsgi.py is used to host the webapp on notjoshno.co.uk. Please do not change or rename this file.
-* login.py is the module used for handling anything concerning the login/user systems
-* databaser.py is the module used for anything involving the SQL Server
+* *** wsgi.py is used to host the webapp on notjoshno.co.uk. Please do not change or rename this file. ***
+* approutes.py is for handling any url routing e.g. /app/namegenerator
+* errorhandlers.py is for handling any error codes e.g. 404
+* databaser.py is the module used for anything involving the SQL Server ** excluding queries ** e.g. connecting to a database
+* web_pages.py is for handling any web page rendering, formatting, etc.
