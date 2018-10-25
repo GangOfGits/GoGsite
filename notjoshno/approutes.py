@@ -34,6 +34,7 @@ def login():
             if verify_password(request.form["username"],
                                request.form["password"]):
                 #Set the session "username" key to the username put into the form
+                session["credentials"] = {}
                 session["credentials"]["username"] = request.form["username"]
 
 
