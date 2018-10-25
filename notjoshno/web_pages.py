@@ -16,7 +16,7 @@ from flask import render_template, session
 #         self.start = start
 #         self.message = message
 
-def set_alert(state = True, type = "info", header = "Danger:",
+def set_alert(state = False, type = "danger", header = "Danger:",
               message = "You should not be seeing this"):
     session["alert"] = {}
     settings = session["alert"]
