@@ -27,7 +27,7 @@
               </li>
             </ul>
               <span class="navbar-text">
-                  {{logged_in_message}}
+                  {{logged_in_message}} {% if not signed_in %} <a role="button" class="btn btn-light" href="/login">Log in</a> {% else %} <a role="button" class="btn btn-light" href="/sign_out">Sign out</a> {% endif %}
               </span>
           </div>
         </nav>

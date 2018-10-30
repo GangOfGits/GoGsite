@@ -45,6 +45,8 @@ class web_page(object):
         rendered_logged_in_message = ("Logged in as: " + username) if username is not None\
         else "Not currently logged in"
 
+        signed_in_state = True if rendered_logged_in_message[:1] == "L" else False
+
         alert_settings = session["alert"]
         alert_state = alert_settings["state"]
         alert_type = alert_settings["type"]
@@ -54,6 +56,7 @@ class web_page(object):
         return render_template(self.template,
                                title = self.title,
                                logged_in_message = rendered_logged_in_message,
+                               signed_in = signed_in_state,
                                alert = alert_state,
                                alert_type = alert_type,
                                alert_header = alert_header,
